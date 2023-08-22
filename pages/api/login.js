@@ -28,7 +28,7 @@ export default async function handler(req, res) {
       res.status(200).json({ message: 'Login successful' });
     } else {
       // Login failed
-      res.status(401).json({ message: 'Invalid credentials' });
+      res.status(401).json({ message: 'Data yang anda masukan salah!' });
     }
   } catch (error) {
     console.error('An error occurred:', error);

@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { useRouter } from 'next/router'; // Import the useRouter hook
-
+import { useRouter } from 'next/router'; 
+import Cookies from 'js-cookie';
 import {
     FormControl,
     FormLabel,
@@ -11,9 +11,18 @@ import {
     FormErrorMessage,
     FormHelperText,
     Image,
+    Alert,
+    AlertIcon,
+    AlertTitle,
+    AlertDescription,
   } from '@chakra-ui/react'
   import { Input } from '@chakra-ui/react'
+  import { useEffect } from 'react';
+
+
+
 function Index() {
+
   const containerStyles = {
     height: '900px', // Set the desired height for the container
     display: 'flex',
@@ -50,9 +59,21 @@ function Index() {
 
   const router = useRouter();
 
- 
+  const [error, setError] = useState(''); // State to hold the error message
+
+  useEffect(() => {
+    const isLoggedIn = Cookies.get('loggedin');
+
+    // Redirect to dashboard if user is logged in and tries to access the login page
+    if (isLoggedIn) {
+      router.replace('/dashboard'); // Use router.replace instead of router.push
+    }
+  }, []); // Run the effect only on mount
+
   const handleLogin = async (event) => {
     event.preventDefault();
+    
+
   
     try {
       const response = await fetch('/api/login', {
@@ -68,17 +89,18 @@ function Index() {
       });
   
       if (response.ok) {
-        // Redirect to the dashboard page upon successful login
-        router.push('/dashboard'); // Use the correct relative path
+        Cookies.set("loggedin", true);
+        router.push("/dashboard");
       } else {
         // Login failed
         const data = await response.json();
-        console.error(data.message);
+        setError(data.message); // Set the error message in state
       }
     } catch (error) {
       console.error('An error occurred:', error);
     }
   };
+  
   
   
   
@@ -91,7 +113,7 @@ function Index() {
   return (
     <div style={containerStyles}>
       <div style={boxStyles}>
-        Left Box
+      
       </div>
 
       <div style={boxStyles}>
@@ -115,8 +137,7 @@ function Index() {
           Silahkan melakukan Autentikasi terlebih dahulu
           </p>
 
-
-        
+   
           <FormControl isRequired>
             <FormLabel textColor="red">Username</FormLabel>
             <Input
@@ -154,6 +175,12 @@ function Index() {
             <Button mt={4} colorScheme="teal" onClick={handleLogin}>
               Submit
             </Button>
+            {error && (
+              <Alert status="error" mt={4}>
+                <AlertIcon />
+                <AlertDescription textColor="red">{error}</AlertDescription>
+              </Alert>
+            )}
           </FormControl>
         </div>
       </div>

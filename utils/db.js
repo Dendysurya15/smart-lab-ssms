@@ -1,14 +1,20 @@
-const mysql = require('mysql2');
+import mysql from 'mysql';
 
-// Create a connection pool
-const pool = mysql.createPool({
-  host: 'localhost', // Your MySQL host
-  user: 'root', // Your MySQL username
-  password: '', // Your MySQL password
-  database: 'srsssmsc_smartlab', // Your MySQL database name
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'srsssmsc_smartlab',
 });
 
-module.exports = pool.promise();
+export const connectToDatabase = () => {
+  return new Promise((resolve, reject) => {
+    db.connect((error) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+      resolve(db);
+    });
+  });
+};
