@@ -1,5 +1,7 @@
 import React, { useState } from 'react'; // Import useState
 import { useRouter } from 'next/router';
+import Dashboard from 'components/Dashboard/Dashboard';
+import History from 'components/History/Historysample';
 // import Cookies from 'js-cookie';
 import {
   IconButton,
@@ -69,11 +71,12 @@ const SidebarContent = ({ onClose, setActiveTab, ...rest }) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem
-          key={link.name}
-          icon={link.icon}
-          setActiveTab={setActiveTab} // Pass setActiveTab here
-        >
+       <NavItem
+       key={link.name}
+       icon={link.icon}
+       setActiveTab={setActiveTab}
+       onClose={onClose} // Pass the onClose prop
+     >
           {link.name}
         </NavItem>
       ))}
@@ -81,9 +84,9 @@ const SidebarContent = ({ onClose, setActiveTab, ...rest }) => {
   );
 };
 
-const NavItem = ({ icon, children, setActiveTab, ...rest }) => {
+const NavItem = ({ icon, children, setActiveTab, onClose, ...rest }) => {
   const handleItemClick = () => {
-    setActiveTab(children); // Set the active tab when an item is clicked
+    setActiveTab(children);
     onClose(); // Close the sidebar on mobile
   };
   return (
@@ -92,7 +95,7 @@ const NavItem = ({ icon, children, setActiveTab, ...rest }) => {
     href="#"
     style={{ textDecoration: 'none' }}
     _focus={{ boxShadow: 'none' }}
-    onClick={handleItemClick} // Add onClick handler
+    onClick={handleItemClick}
   >
       <Flex
         align="center"
@@ -130,6 +133,12 @@ const MobileNav = ({ onOpen, onClose, ...rest }) => {
     Cookies.remove("loggedin"); // Correct the cookie name
     router.push('/'); // Use the router instance to navigate
   }
+// Check if the code is running on the client side
+const isClient = typeof window !== 'undefined';
+
+if (!isClient) {
+  return null;
+}
 
   return (
     <Flex
@@ -153,7 +162,7 @@ const MobileNav = ({ onOpen, onClose, ...rest }) => {
       />
 
       <Text
-        display={{ base: 'flex', md: 'none' }}
+        display={{ base: 'flex', md: 'none' }}                                                          
         fontSize="2xl"
         fontFamily="monospace"
         fontWeight="bold"
@@ -240,9 +249,9 @@ const SidebarWithHeader = () => {
      
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
-        {activeTab === 'Dashboard' && <h1>Dashboard</h1>}
+        {activeTab === 'Dashboard' && <Dashboard/>}
         {activeTab === 'Progress Sample' && <h1>Progress Sample</h1>}
-        {activeTab === 'History Sample' && <h1>History Sample</h1>}
+        {activeTab === 'History Sample' && <History/>}
       </Box>
     </Box>
   );

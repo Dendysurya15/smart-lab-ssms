@@ -8,12 +8,9 @@ import {
     InputGroup ,
     Button,
     InputRightElement ,
-    FormErrorMessage,
-    FormHelperText,
     Image,
     Alert,
     AlertIcon,
-    AlertTitle,
     AlertDescription,
   } from '@chakra-ui/react'
   import { Input } from '@chakra-ui/react'
@@ -101,10 +98,6 @@ function Index() {
     }
   };
   
-  
-  
-  
-  
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -133,8 +126,8 @@ function Index() {
 
 
           <h1 style={{ color: 'black' }}>Selamat Datang</h1>
-          <p style={{ color: 'rgba(0, 0, 0, 0.5)', textAlign: '' }}>
-          Silahkan melakukan Autentikasi terlebih dahulu
+          <p style={{ color: 'rgba(0, 0, 0, 0.5)' }}>
+            Silahkan melakukan Autentikasi terlebih dahulu
           </p>
 
    

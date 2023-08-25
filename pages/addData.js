@@ -1,11 +1,11 @@
 import React from 'react'
 
-function index() {
+function addData() {
   return (
     <div>
-      Login Succes bro
+      add data
     </div>
   )
 }
 
-export default index
+export default addData

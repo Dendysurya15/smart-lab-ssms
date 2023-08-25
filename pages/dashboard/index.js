@@ -1,19 +1,17 @@
-import React from 'react'
+
 import Navbar from '../../components/Layout/Navbar';
 import withAuth from '../middleware/withAuth'; // Adjust the path based on your file structure
 import { useEffect } from 'react';
+import React, { useState } from 'react'; // Import useState
+import { useRouter } from 'next/router';
 
-
-function Dashboard() {
-  // ... your existing code ...
-
+const Dashboard = () => {
+  
   return (
-    <div>
-      <Navbar />
-      <h1>Hallo</h1>
-      {/* ... rest of your component's JSX ... */}
-    </div>
+    
+    <Navbar />
   );
-}
-
+};
 export default withAuth(Dashboard);
+
+
