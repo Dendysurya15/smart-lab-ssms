@@ -1,19 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import DataTable from 'react-data-table-component';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
-import { format } from 'date-fns';
+// components/DashboardPage.js
+import React from 'react';
 
-
-function Dashboard() {
- 
-
+const DashboardPage = () => {
   return (
     <div>
-   
-  <h1>Ini Dashbiard</h1>
+     dahsboard
     </div>
   );
-}
+};
 
-export default Dashboard;
+export default DashboardPage;
