@@ -69,7 +69,7 @@ function Index() {
   
       if (response.ok) {
         // Redirect to the dashboard page upon successful login
-        router.push('/dashboard'); // Use the correct relative path
+        router.push('/Dashboard/dashboard'); // Use the correct relative path
       } else {
         // Login failed
         const data = await response.json();
@@ -111,50 +111,55 @@ function Index() {
 
 
           <h1 style={{ color: 'black' }}>Selamat Datang</h1>
-          <p style={{ color: 'rgba(0, 0, 0, 0.5)', textAlign: '' }}>
+          <p style={{ color: 'rgba(0, 0, 0, 0.5)' }}>
+
           Silahkan melakukan Autentikasi terlebih dahulu
           </p>
 
 
         
           <FormControl isRequired>
-            <FormLabel textColor="red">Username</FormLabel>
-            <Input
-              textColor="black"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)} // Update username state
-            />
+  <FormLabel textColor="red">Username</FormLabel>
+  <Input
+    textColor="black"
+    placeholder="Username"
+    id="username"  // Unique ID for the username input
+    value={username}
+    onChange={(e) => setUsername(e.target.value)}
+  />
 
-            <FormLabel textColor="red">Email</FormLabel>
-            <Input
-              textColor="black"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)} // Update email state
-            />
+  <FormLabel textColor="red">Email</FormLabel>
+  <Input
+    textColor="black"
+    placeholder="Email"
+    id="email"  // Unique ID for the email input
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+  />
 
-            <FormLabel textColor="red">Password</FormLabel>
-            <InputGroup size="md">
-              <Input
-                textColor="black"
-                pr="4.5rem"
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)} // Update password state
-              />
-              <InputRightElement width="4.5rem">
-                <Button h="1.75rem" size="sm" onClick={handleShowPassword}>
-                  {showPassword ? 'Hide' : 'Show'}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
+  <FormLabel textColor="red">Password</FormLabel>
+  <InputGroup size="md">
+    <Input
+      textColor="black"
+      pr="4.5rem"
+      type={showPassword ? 'text' : 'password'}
+      placeholder="Enter password"
+      id="password"  // Unique ID for the password input
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+    />
+    <InputRightElement width="4.5rem">
+      <Button h="1.75rem" size="sm" onClick={handleShowPassword}>
+        {showPassword ? 'Hide' : 'Show'}
+      </Button>
+    </InputRightElement>
+  </InputGroup>
 
-            <Button mt={4} colorScheme="teal" onClick={handleLogin}>
-              Submit
-            </Button>
-          </FormControl>
+  <Button mt={4} colorScheme="teal" onClick={handleLogin}>
+    Submit
+  </Button>
+</FormControl>
+
         </div>
       </div>
 
