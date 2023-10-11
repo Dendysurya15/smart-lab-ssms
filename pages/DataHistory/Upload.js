@@ -80,10 +80,31 @@ function Upload() {
       console.log('No data to save.');
       return;
     }
-
+  
     const sqlInsertStatement = generateSqlInsertStatement(tableData, selectedColumns, missingColumns);
-    console.log(sqlInsertStatement);
+  
+    // Define the API endpoint URL
+    const apiUrl = '/api/uploadapi'; // Adjust this URL to match your Next.js API route
+  
+    // Make a POST request to the API
+    fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ sqlInsertStatement }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Response from API:', data);
+        // Handle the API response here
+      })
+      .catch((error) => {
+        console.error('Error sending data to API:', error);
+        // Handle the error here
+      });
   };
+  
 
   const generateSqlInsertStatement = (jsonData, selectedColumns, missingColumns) => {
     if (!Array.isArray(jsonData) || jsonData.length === 0) {
