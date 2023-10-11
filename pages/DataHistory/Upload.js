@@ -7,7 +7,7 @@ import DataTable from 'react-data-table-component';
 
 function Upload() {
   const [tableData, setTableData] = useState([]);
-  const [selectedColumns, setSelectedColumns] = useState([1, 2, 3,4,7,8,11,9,12,10,15]); // Example: Select columns 1, 3, and 7
+  const [selectedColumns, setSelectedColumns] = useState([1, 2, 3,4,6,7,8,11,9,12,10,14]); // Example: Select columns 1, 3, and 7
 
   // Define a mapping between column indices and custom headers
   const customHeaders = {
@@ -15,13 +15,14 @@ function Upload() {
     2: 'Jenis Sample',   
     3: 'Asal Sample', 
     4: 'Nomor Kupa', 
-    7: 'Nama Pengirim', 
+    6: 'Nama Pengirim', 
+    7: 'Nama Departemen', 
     8: 'Nomor Surat', 
     11: 'Estimasi', 
     9: 'Parameter', 
     12: 'Tanggal Selesai', 
     10: 'Kode Sample', 
-    15: 'Progress',    
+    14: 'Progress',    
   };
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
