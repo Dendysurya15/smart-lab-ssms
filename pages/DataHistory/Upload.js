@@ -222,11 +222,11 @@ const handleSave = () => {
           <Box {...getRootProps()} border="2px dashed" p={4} textAlign="center">
             <input {...getInputProps()} />
             {isDragActive ? (
-              <Text>Drop the CSV file here...</Text>
+              <Text>Tarik dan Jatuhkan file CSV Area ...</Text>
             ) : (
-              <Text>Drag and drop a CSV file here, or click to select one</Text>
+              <Text>Tarik dan Jatuhkan FIle ke Area Atau Click Area untuk Memilih</Text>
             )}
-            <Text>Accepted file format: .csv</Text>
+            <Text>Hanya untuk file format: .csv</Text>
           </Box>
         ) : (
           <Box>
