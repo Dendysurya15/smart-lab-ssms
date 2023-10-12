@@ -1,9 +1,4 @@
-console.error = (message) => {
-  if (message.startsWith('Warning: React does not recognize')) {
-    return;
-  }
-  console.warn(message);
-};
+
 
 
 import React, { useState, useEffect } from 'react';

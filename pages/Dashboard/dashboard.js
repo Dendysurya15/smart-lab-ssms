@@ -1,17 +1,16 @@
-import React from 'react';
-import { Box, Text } from '@chakra-ui/react';
-import DashboardLayout from '../../RootLayouts/DashboardLayout/dashboardLayout'; // Import your layout
+// pages/Dashboard/dashboard.js
+import DashboardLayout from '../../RootLayouts/DashboardLayout/dashboardLayout'; // Adjust the import path
+import { checkTokenAndRedirect } from '../serverside'; // Adjust the import path
 
-const DashboardPage = () => {
+export default function Dashboard() {
   return (
     <DashboardLayout>
-      {/* Page-specific content goes here */}
-      <Box>
-        <Text fontSize="xl">Welcome to your dashboard!</Text>
-        {/* Add your dashboard content here */}
-      </Box>
+      {/* Your dashboard content */}
     </DashboardLayout>
   );
-};
+}
 
-export default DashboardPage;
+export async function getServerSideProps({ req, res }) {
+  await checkTokenAndRedirect({ req, res });
+  return { props: {} };
+}

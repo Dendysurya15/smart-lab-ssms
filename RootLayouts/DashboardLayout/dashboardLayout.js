@@ -19,11 +19,14 @@ import {
 import { ChevronDownIcon, MoonIcon, SunIcon, ChevronRightIcon,CopyIcon , FaMoon, FaSun  } from '@chakra-ui/icons';
 import { Link } from '@chakra-ui/next-js'
 import {user} from 'react-icons-kit/icomoon/user'
+  
+import { useRouter } from 'next/router'; // Import the useRouter hook
 
 const DashboardLayout = ({ children }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const router = useRouter();
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -34,9 +37,12 @@ const DashboardLayout = ({ children }) => {
   };
 
   const handleLogout = () => {
-    // Implement your logout logic here
+    // Clear the token from local storage
+    localStorage.removeItem('token');
+    // Redirect to the login page
+    router.push('/'); // Use the correct relative path to your login page
   };
-
+  
   useEffect(() => {
     const handleResize = () => {
       // Automatically close the sidebar on small screens (less than 768px)

@@ -58,9 +58,12 @@ const App = () => {
       });
   
       if (response.ok) {
-        // Redirect to the dashboard page upon successful login
-        router.push('/Dashboard/dashboard'); // Use the correct relative path
-      } else {
+        const data = await response.json();
+        const token = data.token;
+        localStorage.setItem('token', token); // Store the token in local storage
+        router.push('/Dashboard/dashboard'); // Redirect to the dashboard page
+      }
+       else {
          // Login failed
          const data = await response.json();
          onOpen(); // Open the Chakra UI AlertDialog
