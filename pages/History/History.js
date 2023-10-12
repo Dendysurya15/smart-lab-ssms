@@ -35,6 +35,7 @@ import { Link } from '@chakra-ui/next-js'
 import { DeleteIcon, EditIcon, WarningIcon, AddIcon } from '@chakra-ui/icons'
 import DashboardLayout from '../../RootLayouts/DashboardLayout/dashboardLayout'; // Import your layout
 import { SmallAddIcon} from '@chakra-ui/icons';
+import { checkTokenAndRedirect } from '../serverside'; // Adjust the import path
 
 
 function History() {
@@ -381,3 +382,8 @@ export default History
 
 
 
+
+export async function getServerSideProps({ req, res }) {
+  await checkTokenAndRedirect({ req, res });
+  return { props: {} };
+}

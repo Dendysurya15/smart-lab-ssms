@@ -31,6 +31,7 @@ import {
 import NextLink from 'next/link'; // Import Next.js Link
 
 import { DeleteIcon, EditIcon, WarningIcon, AddIcon } from '@chakra-ui/icons'
+import { checkTokenAndRedirect } from '../serverside'; // Adjust the import path
 
 
 function Historysample() {
@@ -373,3 +374,11 @@ function Historysample() {
   
 
 export default Historysample
+
+
+
+
+export async function getServerSideProps({ req, res }) {
+  await checkTokenAndRedirect({ req, res });
+  return { props: {} };
+}

@@ -14,6 +14,9 @@ import papaparse from 'papaparse';
 import DashboardLayout from '../../RootLayouts/DashboardLayout/dashboardLayout';
 import DataTable from 'react-data-table-component';
 
+import { checkTokenAndRedirect } from '../serverside'; // Adjust the import path
+
+
 function Upload() {
   const [tableData, setTableData] = useState([]);
   const [selectedColumns, setSelectedColumns] = useState([1, 2, 3,4,6,7,10,8,11,9,14,12]); // Example: Select columns 1, 3, and 7
@@ -267,3 +270,9 @@ const handleSave = () => {
 
 
 export default Upload;
+
+
+export async function getServerSideProps({ req, res }) {
+  await checkTokenAndRedirect({ req, res });
+  return { props: {} };
+}
